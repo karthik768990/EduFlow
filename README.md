@@ -1,1 +1,432 @@
-# EduFlow
+# EduFlow - – Smart Academic Workflow Platform
+
+## Overview
+
+EduFlow is a lightweight, web-based academic workflow and study accountability platform designed to improve learning discipline and teaching visibility without using AI or machine learning. The platform helps students plan, track, and reflect on their studies while enabling teachers to assign work, monitor progress, and provide feedback through a clean, intuitive interface.
+
+EduFlow focuses on organization, accountability, and reflection, addressing a real gap between complex LMS platforms and unstructured personal study habits.
+
+## 🎯 Problem Statement
+
+Students often struggle with missed deadlines, poor study consistency, and lack of structured reflection. Teachers, on the other hand, spend excessive time manually tracking assignments and student progress. Existing learning platforms are either too complex or not student-centric.
+
+EduFlow solves this by offering a simple, role-based academic workflow system that improves discipline, transparency, and productivity for both students and educators.
+
+✨ Key Features
+👨‍🎓 Student Features
+
+Subject-wise task planner
+
+Study session tracking (Pomodoro-style)
+
+Daily & weekly study reflections
+
+Progress analytics dashboard
+
+Deadline urgency heatmap
+
+Study streak tracking
+
+👩‍🏫 Teacher Features
+
+Assignment creation & scheduling
+
+Class-wise progress monitoring
+
+Deadline compliance overview
+
+Student reflection review
+
+Feedback & remarks system
+
+📊 Analytics (Rule-Based, No AI)
+
+Study consistency score
+
+Assignment completion rate
+
+Time-on-task analysis
+
+Missed deadline penalties
+
+🏗️ System Architecture
+
+Frontend: React-based client application
+
+Backend: FastAPI (Python)
+
+Database: PostgreSQL / SQLite (for demo)
+
+Authentication: JWT-based role authentication
+
+Deployment: Cloud-compatible (Vercel + Render)
+
+🧠 Design Principles
+
+No AI / ML / LLM usage
+
+Deterministic, explainable logic
+
+Clean REST API design
+
+Scalable modular backend
+
+Privacy-by-design (no real student data)
+
+🧰 Tech Stack
+Frontend
+
+React
+
+Vite
+
+Tailwind CSS
+
+Chart.js
+
+Backend
+
+Python 3.10+
+
+FastAPI
+
+SQLAlchemy
+
+Pydantic
+
+JWT Authentication
+
+Database
+
+PostgreSQL (production)
+
+SQLite (local demo)
+
+📂 Repository Structure
+EduFlow/
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── database.py
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── routes/
+│   │   ├── auth/
+│   │   └── utils/
+│   ├── requirements.txt
+│   └── README.md
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── README.md
+│
+├── docs/
+│   ├── architecture.md
+│   └── api-spec.md
+│
+└── README.md
+
+
+
+
+Backend Architecture 
+```bash
+
+
+backend/
+│
+├── app/
+│   ├── main.py
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── security.py
+│   │   └── database.py
+│   │
+│   ├── modules/
+│   │   ├── auth/
+│   │   │   ├── router.py
+│   │   │   ├── service.py
+│   │   │   ├── schemas.py
+│   │   │   └── dependencies.py
+│   │   │
+│   │   ├── users/
+│   │   │   ├── router.py
+│   │   │   ├── service.py
+│   │   │   ├── repository.py
+│   │   │   ├── models.py
+│   │   │   └── schemas.py
+│   │   │
+│   │   ├── assignments/
+│   │   │   ├── router.py
+│   │   │   ├── service.py
+│   │   │   ├── repository.py
+│   │   │   ├── models.py
+│   │   │   └── schemas.py
+│   │   │
+│   │   ├── study_sessions/
+│   │   │   ├── router.py
+│   │   │   ├── service.py
+│   │   │   ├── repository.py
+│   │   │   ├── models.py
+│   │   │   └── schemas.py
+│   │   │
+│   │   ├── reflections/
+│   │   │   ├── router.py
+│   │   │   ├── service.py
+│   │   │   ├── repository.py
+│   │   │   ├── models.py
+│   │   │   └── schemas.py
+│   │
+│   └── shared/
+│       ├── responses.py
+│       └── exceptions.py
+│
+├── requirements.txt
+└── README.md
+
+```
+
+Frontend architecture 
+
+```bash
+
+frontend/
+│
+├── src/
+│   ├── app/
+│   │   ├── App.jsx
+│   │   ├── router.jsx
+│   │   └── ProtectedRoute.jsx
+│   │
+│   ├── auth/
+│   │   ├── LoginPage.jsx
+│   │   ├── authService.js
+│   │   └── authContext.jsx
+│   │
+│   ├── features/
+│   │   ├── assignments/
+│   │   │   ├── AssignmentPage.jsx
+│   │   │   ├── AssignmentCard.jsx
+│   │   │   ├── assignmentService.js
+│   │   │   └── assignmentHooks.js
+│   │   │
+│   │   ├── study/
+│   │   │   ├── StudyPage.jsx
+│   │   │   ├── StudyTimer.jsx
+│   │   │   ├── studyService.js
+│   │   │   └── studyHooks.js
+│   │   │
+│   │   ├── reflections/
+│   │   │   ├── ReflectionPage.jsx
+│   │   │   ├── ReflectionForm.jsx
+│   │   │   └── reflectionService.js
+│   │   │
+│   │   └── dashboard/
+│   │       ├── DashboardPage.jsx
+│   │       ├── ProgressChart.jsx
+│   │       └── dashboardService.js
+│   │
+│   ├── shared/
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── Loader.jsx
+│   │   │
+│   │   ├── api/
+│   │   │   └── apiClient.js
+│   │   │
+│   │   ├── hooks/
+│   │   │   └── useFetch.js
+│   │   │
+│   │   └── utils/
+│   │       └── dateUtils.js
+│   │
+│   └── main.jsx
+│
+└── index.html
+
+```
+
+
+
+⚙️ Setup Instructions
+Backend Setup (FastAPI)
+cd backend
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+
+
+Backend runs at:
+
+http://localhost:8000
+
+
+Interactive API docs:
+
+http://localhost:8000/docs
+
+Frontend Setup
+cd frontend
+npm install
+npm run dev
+
+
+Frontend runs at:
+
+http://localhost:5173
+
+🔐 Authentication Flow
+
+JWT-based authentication
+
+Role-based access (Student / Teacher)
+
+Protected routes for sensitive operations
+
+Secure password hashing
+
+📽️ Demo Flow (For Judges)
+
+Teacher logs in and creates an assignment
+
+Student logs in and plans the task
+
+Student starts a study session
+
+Student submits reflection
+
+Teacher views analytics dashboard
+
+Deadline compliance & progress displayed
+
+🚧 Limitations
+
+No mobile app (web-only prototype)
+
+Demo uses simulated academic data
+
+Notifications are in-app only
+
+🚀 Future Scope
+
+Mobile application
+
+Calendar integration
+
+Exportable academic reports
+
+Institutional deployment support
+
+📜 License
+
+This project is open-source and intended for educational purposes. Any reused libraries comply with their respective licenses.
+
+🧭 MERMAID ARCHITECTURE DIAGRAM
+graph TD
+    User[Student / Teacher]
+    Frontend[React Frontend]
+    Backend[FastAPI Backend]
+    Auth[JWT Authentication]
+    DB[(PostgreSQL Database)]
+
+    User --> Frontend
+    Frontend --> Backend
+    Backend --> Auth
+    Backend --> DB
+    Auth --> Backend
+    Backend --> Frontend
+
+📝 PROJECT DESCRIPTION (100–300 Words)
+
+EduFlow is a web-based academic workflow and study accountability platform designed to enhance learning discipline and teaching visibility without relying on artificial intelligence or machine learning. The platform addresses a common educational challenge: students struggle with planning, consistency, and reflection, while teachers lack simple tools to monitor academic progress efficiently.
+
+EduFlow provides a structured yet lightweight solution by combining task planning, study session tracking, reflective learning, and progress analytics into a single platform. Students can organize assignments, track focused study sessions, maintain study streaks, and reflect on their learning habits. Teachers can create assignments, monitor deadline compliance, review student reflections, and gain insights into class-wide academic patterns through intuitive dashboards.
+
+The system is built using a modern web stack with a React frontend and a FastAPI backend, ensuring scalability, performance, and clean API design. All analytics are rule-based and deterministic, ensuring transparency and full compliance with the hackathon’s no-AI constraint.
+
+EduFlow emphasizes user-centered design, data privacy, and practical educational impact. By improving accountability and visibility in everyday academic workflows, the platform offers a realistic, deployable solution for schools, colleges, and training institutions.
+
+🏁 Final Note (Important)
+
+This solution is:
+✅ Rule-compliant
+✅ Architecturally strong
+✅ Demo-friendly
+✅ Judge-aligned
+✅ Finale-worthy
+
+If you want next:
+
+FastAPI database schema
+
+API route design
+
+Demo credentials
+
+Pitch script
+
+Slide deck content
+
+
+
+
+
+add this content also 
+
+
+🧠 BACKEND ARCHITECTURE: MODULE-COMMUNICATION DRIVEN (FastAPI)
+
+We will follow a Clean + Layered + Domain-oriented architecture
+(No MVC confusion, no spaghetti routes)
+
+🔑 CORE IDEA
+
+Routes NEVER talk to the database directly
+Business logic NEVER lives in routes
+Each module communicates via services & schemas
+
+1️⃣ HIGH-LEVEL MODULE COMMUNICATION FLOW
+Client
+  ↓
+API Routes
+  ↓
+Service Layer (Business Logic)
+  ↓
+Repository Layer (DB Access)
+  ↓
+Database
+
+
+Cross-cutting:
+
+Auth Module
+
+Shared Utils
+
+Config
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
