@@ -1,4 +1,13 @@
-.frontend/node_modules
-..history/
+# Node
+frontend/node_modules/
+
+# VS Code / history
 .history/
-.backend/.env
+**/.history/
+
+# Environment files
+backend/.env
+.env
+
+# OS junk
+.DS_Store
