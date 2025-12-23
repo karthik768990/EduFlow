@@ -1,5 +1,5 @@
 import requests
-from app.core.config import SUPABASE_URL, SUPABASE_KEY
+from core.config import SUPABASE_URL, SUPABASE_KEY
 
 class AuthService:
     @staticmethod

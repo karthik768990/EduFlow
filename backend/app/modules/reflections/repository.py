@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from reflections.models import Reflection
+from modules.reflections.models import Reflection
 
 class ReflectionRepository:
 

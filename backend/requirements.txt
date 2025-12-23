@@ -5,3 +5,5 @@ supabase
 pydantic
 python-jose
 httpx
+sqlalchemy
+psycopg2-binary

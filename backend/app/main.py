@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-from app.modules.auth.router import router as auth_router
-from app.modules.users.router import router as users_router
-from app.modules.assignments.router import router as assignments_router
-from app.modules.study_sessions.router import router as study_router
-from app.modules.reflections.router import router as reflections_router
+
+from modules.auth.router import router as auth_router
+from modules.users.router import router as users_router
+from modules.assignments.router import router as assignments_router
+from modules.study_sessions.router import router as study_router
+from modules.reflections.router import router as reflections_router
 
 app = FastAPI(title="EduFlow API")
 

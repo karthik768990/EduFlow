@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 from shared.db import get_db
 
 from shared.dependencies import require_student
-from study_sessions.schemas import StudySessionStart
-from study_sessions.service import StudySessionService
+from modules.study_sessions.schemas import StudySessionStart
+from modules.study_sessions.service import StudySessionService
 
 router = APIRouter()
 

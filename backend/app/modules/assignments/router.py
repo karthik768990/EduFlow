@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.modules.auth.dependencies import get_current_user
+from core.database import SessionLocal
+from modules.auth.dependencies import get_current_user
 from .schemas import AssignmentCreate
 from .service import AssignmentService
 
