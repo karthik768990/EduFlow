@@ -74,7 +74,7 @@ Scalable modular backend
 Privacy-by-design (no real student data)
 
 ## 🧰 Tech Stack
-Frontend
+### Frontend
 
 React
 
@@ -84,7 +84,7 @@ Tailwind CSS
 
 Chart.js
 
-Backend
+### Backend
 
 Python 3.10+
 
@@ -131,7 +131,38 @@ EduFlow/
 
 
 ```
+## Architecture 
 
+```mermaid
+flowchart TB
+    User[Student / Teacher]
+
+    subgraph Frontend[Frontend - React]
+        UI[UI Components]
+        Hooks[Hooks]
+        FE_Services[Service Layer]
+        RouterFE[Router]
+    end
+
+    subgraph Backend[Backend - FastAPI]
+        RouterBE[API Routers]
+        BE_Services[Business Services]
+        Repo[Repositories]
+        Auth[JWT & RBAC]
+    end
+
+    DB[(PostgreSQL)]
+
+    User --> UI
+    UI --> Hooks
+    Hooks --> FE_Services
+    FE_Services --> RouterFE
+    RouterFE --> RouterBE
+    RouterBE --> Auth
+    RouterBE --> BE_Services
+    BE_Services --> Repo
+    Repo --> DB
+```
 ### Backend Architecture 
 ```bash
 
