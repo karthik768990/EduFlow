@@ -5,4 +5,11 @@ router = APIRouter()
 
 @router.get("/me")
 def get_me(user=Depends(get_current_user)):
-    return user
+    """
+    Verifies Supabase token and returns authenticated user
+    """
+    return {
+        "id": user["id"],
+        "email": user["email"],
+        "provider": user["app_metadata"]["provider"]
+    }

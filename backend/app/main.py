@@ -13,3 +13,6 @@ app.include_router(users_router, prefix="/users", tags=["Users"])
 app.include_router(assignments_router, prefix="/assignments", tags=["Assignments"])
 app.include_router(study_router, prefix="/study-sessions", tags=["Study Sessions"])
 app.include_router(reflections_router, prefix="/reflections", tags=["Reflections"])
+@app.get("/health")
+def health():
+    return {"status": "ok"}

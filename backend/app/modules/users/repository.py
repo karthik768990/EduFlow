@@ -5,3 +5,9 @@ class UserRepository:
     @staticmethod
     def get_by_id(db: Session, user_id: str):
         return db.query(User).filter(User.id == user_id).first()
+    @staticmethod
+    def create(db, user):
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+        return user
