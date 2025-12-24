@@ -8,7 +8,7 @@ class RankingService:
             SELECT user_id,
                    COUNT(*) AS completed
             FROM study_sessions
-            WHERE ended_at IS NOT NULL
+            WHERE end_time IS NOT NULL
             GROUP BY user_id
             ORDER BY completed DESC
             LIMIT 10
