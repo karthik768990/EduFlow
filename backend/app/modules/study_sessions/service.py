@@ -1,6 +1,6 @@
 from datetime import datetime
-from modules.study_sessions.models import StudySession
-from modules.study_sessions.repository import StudySessionRepository
+from app.modules.study_sessions.models import StudySession
+from app.modules.study_sessions.repository import StudySessionRepository
 
 class StudySessionService:
 

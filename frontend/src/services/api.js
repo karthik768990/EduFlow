@@ -1,15 +1,20 @@
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+const API_URL = "http://127.0.0.1:8000";
+//TODO replace it witth .env format
 
-export const apiFetch = async (endpoint, method, token, body) => {
-  const res = await fetch(`${BASE_URL}${endpoint}`, {
+export async function apiFetch(path, method = "GET", token, body) {
+  const res = await fetch(`${API_URL}${path}`, {
     method,
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      ...(token && { Authorization: `Bearer ${token}` }),
     },
     body: body ? JSON.stringify(body) : undefined,
   });
 
-  if (!res.ok) throw new Error("API Error");
+  if (!res.ok) {
+    throw new Error("API Error");
+  }
+
   return res.json();
-};
+}
+  

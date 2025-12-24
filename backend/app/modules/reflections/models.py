@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Text
 from datetime import datetime
-from core.database import Base
+from app.core.database import Base
 
 class Reflection(Base):
     __tablename__ = "reflections"

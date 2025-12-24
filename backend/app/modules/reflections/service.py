@@ -1,5 +1,5 @@
-from modules.reflections.models import Reflection
-from modules.reflections.repository import ReflectionRepository
+from app.modules.reflections.models import Reflection
+from app.modules.reflections.repository import ReflectionRepository
 
 class ReflectionService:
 

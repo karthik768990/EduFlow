@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from shared.db import get_db
-from shared.dependencies import require_student, require_teacher
-from modules.doubts.schemas import DoubtCreate
-from modules.doubts.service import DoubtService
+from app.shared.db import get_db
+from app.shared.dependencies import require_student, require_teacher
+from app.modules.doubts.schemas import DoubtCreate
+from app.modules.doubts.service import DoubtService
 
 router = APIRouter()
 

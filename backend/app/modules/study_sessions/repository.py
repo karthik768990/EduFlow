@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from modules.study_sessions.models import StudySession
+from app.modules.study_sessions.models import StudySession
 
 class StudySessionRepository:
 

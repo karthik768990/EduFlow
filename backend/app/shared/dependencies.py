@@ -4,39 +4,33 @@ from sqlalchemy.orm import Session
 import jwt
 import os
 
-from core.database import get_db
-from modules.users.repository import UserRepository
+from app.core.database import get_db
+from app.modules.users.repository import UserRepository
 
 security = HTTPBearer()
 SUPABASE_JWT_SECRET = os.getenv("SUPABASE_JWT_SECRET")
 
 # ---------- AUTH ----------
-def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
-    db: Session = Depends(get_db),
-):
-    token = credentials.credentials
+from fastapi import Header, HTTPException
+from supabase import create_client
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+supabase = create_client(
+    os.getenv("SUPABASE_URL"),
+    os.getenv("SUPABASE_SERVICE_KEY"),
+)
+def get_current_user(authorization: str = Header(...)):
+    if not authorization.startswith("Bearer "):
+        raise HTTPException(status_code=401, detail="Invalid auth header")
+
+    token = authorization.replace("Bearer ", "")
 
     try:
-        payload = jwt.decode(
-            token,
-            SUPABASE_JWT_SECRET,
-            algorithms=["HS256"],
-            audience="authenticated",
-        )
-
-        user_id = payload.get("sub")
-        if not user_id:
-            raise HTTPException(status_code=401, detail="Invalid token")
-
-        user = UserRepository.get_by_id(db, user_id)
-        if not user:
-            raise HTTPException(status_code=401, detail="User not synced")
-
-        return user  # DB USER OBJECT
-
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail="Token expired")
+        res = supabase.auth.get_user(token)
+        return res.user
     except Exception:
         raise HTTPException(status_code=401, detail="Invalid token")
 

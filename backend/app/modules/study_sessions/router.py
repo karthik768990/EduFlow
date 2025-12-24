@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from shared.db import get_db
+from app.shared.db import get_db
 
-from shared.dependencies import require_student
-from modules.study_sessions.schemas import StudySessionStart
-from modules.study_sessions.service import StudySessionService
+from app.shared.dependencies import require_student
+from app.modules.study_sessions.schemas import StudySessionStart
+from app.modules.study_sessions.service import StudySessionService
 
 router = APIRouter()
 

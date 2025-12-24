@@ -1,6 +1,6 @@
-from modules.doubts.models import AssignmentDoubt
-from modules.doubts.repository import DoubtRepository
-from modules.assignments.repository import AssignmentRepository
+from app.modules.doubts.models import AssignmentDoubt
+from app.modules.doubts.repository import DoubtRepository
+from app.modules.assignments.repository import AssignmentRepository
 
 class DoubtService:
 

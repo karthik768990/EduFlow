@@ -1,16 +1,24 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-export default function ProtectedRoute({ children }) {
-  const { session, loading } = useAuth();
+const ProtectedRoute = ({ children, role }) => {
+  const { session, user, loading } = useAuth();
 
   if (loading) {
-    return <p style={{ padding: "20px" }}>Loading...</p>;
+    return (
+      <div style={{ padding: 40, fontSize: 18 }}>
+        Initializing session…
+      </div>
+    );
   }
 
-  if (!session) {
-    return <Navigate to="/login" replace />;
+  if (!session) return <Navigate to="/login" />;
+
+  if (role && user?.role !== role) {
+    return <Navigate to="/unauthorized" />;
   }
 
   return children;
-}
+};
+
+export default ProtectedRoute;
