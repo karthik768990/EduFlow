@@ -1,18 +1,30 @@
-import { useAuth } from "../context/AuthContext";
-import { apiFetch } from "../services/api";
+import { useEffect, useRef } from "react";
+import Layout from "../components/Layout";
+import Chart from "chart.js/auto";
 
 export default function Dashboard() {
-  const { session } = useAuth();
+  const chartRef = useRef();
 
-  const testBackend = async () => {
-    const res = await apiFetch("/auth/me", "GET", session.access_token);
-    alert(JSON.stringify(res, null, 2));
-  };
+  useEffect(() => {
+    new Chart(chartRef.current, {
+      type: "bar",
+      data: {
+        labels: ["Assignments", "Study Sessions", "Reflections"],
+        datasets: [
+          {
+            label: "Activity",
+            data: [5, 8, 3],
+            backgroundColor: ["#2563eb", "#16a34a", "#7c3aed"],
+          },
+        ],
+      },
+    });
+  }, []);
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <button onClick={testBackend}>Test Backend Auth</button>
-    </div>
+    <Layout>
+      <h2>Dashboard</h2>
+      <canvas ref={chartRef} height="100"></canvas>
+    </Layout>
   );
 }

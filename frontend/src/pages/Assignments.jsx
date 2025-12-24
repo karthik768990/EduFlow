@@ -1,8 +1,9 @@
+import Layout from "../components/Layout";
 import { useAuth } from "../context/AuthContext";
 import { apiFetch } from "../services/api";
 
 export default function Assignments() {
-  const { session } = useAuth();
+  const { session, userProfile } = useAuth();
 
   const createAssignment = async () => {
     await apiFetch(
@@ -10,7 +11,7 @@ export default function Assignments() {
       "POST",
       session.access_token,
       {
-        title: "Demo Assignment",
+        title: "Algebra HW",
         subject: "Math",
         deadline: new Date().toISOString(),
       }
@@ -19,9 +20,18 @@ export default function Assignments() {
   };
 
   return (
-    <div>
+    <Layout>
       <h2>Assignments</h2>
-      <button onClick={createAssignment}>Create Assignment</button>
-    </div>
+
+      {userProfile?.role === "teacher" && (
+        <button className="btn" onClick={createAssignment}>
+          ➕ Create Assignment
+        </button>
+      )}
+
+      {userProfile?.role === "student" && (
+        <p>You can view and complete assignments.</p>
+      )}
+    </Layout>
   );
 }

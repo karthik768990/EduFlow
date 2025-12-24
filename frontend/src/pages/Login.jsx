@@ -1,16 +1,17 @@
 import { supabase } from "../config/supabase";
 
 export default function Login() {
-  const login = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-  };
-
   return (
-    <div>
-      <h2>EduFlow Login</h2>
-      <button onClick={login}>Sign in with Google</button>
+    <div className="login-container">
+      <div className="login-box">
+        <h2 style={{ marginBottom: "20px" }}>EduFlow Login</h2>
+        <button
+          className="btn"
+          onClick={() => supabase.auth.signInWithOAuth({ provider: "google" })}
+        >
+          Sign in with Google
+        </button>
+      </div>
     </div>
   );
 }

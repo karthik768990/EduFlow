@@ -1,23 +1,23 @@
+import Layout from "../components/Layout";
 import { useAuth } from "../context/AuthContext";
 import { apiFetch } from "../services/api";
 
 export default function Reflections() {
   const { session } = useAuth();
 
-  const submit = async () => {
-    await apiFetch(
-      "/reflections",
-      "POST",
-      session.access_token,
-      { content: "Good study session today" }
-    );
-    alert("Reflection submitted");
-  };
-
   return (
-    <div>
-      <h2>Reflections</h2>
-      <button onClick={submit}>Submit Reflection</button>
-    </div>
+    <Layout>
+      <h2 className="text-xl font-bold mb-4">Reflections</h2>
+      <button
+        onClick={() =>
+          apiFetch("/reflections", "POST", session.access_token, {
+            content: "Great session today",
+          })
+        }
+        className="bg-purple-500 text-white px-4 py-2 rounded"
+      >
+        Submit Reflection
+      </button>
+    </Layout>
   );
 }
