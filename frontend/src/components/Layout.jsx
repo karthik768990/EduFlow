@@ -8,6 +8,10 @@ export default function Layout({ children }) {
   return (
     <div className="app-layout">
       <div className="sidebar">
+        {userProfile?.role === "teacher" && (
+        <Link to="/teacher/doubts">Student Doubts</Link>
+        )}
+
         <h2>EduFlow</h2>
         <Link to="/">Dashboard</Link>
         <Link to="/assignments">Assignments</Link>
