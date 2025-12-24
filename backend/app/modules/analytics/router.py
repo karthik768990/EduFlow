@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from shared.db import get_db
-from analytics.service import RankingService
+from modules.analytics.service import RankingService
 
 router = APIRouter()
 

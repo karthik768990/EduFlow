@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 
 from shared.db import get_db
 from shared.dependencies import require_student, require_teacher
-from doubts.schemas import DoubtCreate
-from doubts.service import DoubtService
+from modules.doubts.schemas import DoubtCreate
+from modules.doubts.service import DoubtService
 
 router = APIRouter()
 

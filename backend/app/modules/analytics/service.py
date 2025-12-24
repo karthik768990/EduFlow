@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from study_sessions.models import StudySession
-from assignments.models import Assignment
+from modules.study_sessions.models import StudySession
+from modules.assignments.models import Assignment
 
 class RankingService:
 

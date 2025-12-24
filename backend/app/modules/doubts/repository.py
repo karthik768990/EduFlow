@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from doubts.models import AssignmentDoubt
+from modules.doubts.models import AssignmentDoubt
 
 class DoubtRepository:
 
