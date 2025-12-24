@@ -1,17 +1,20 @@
 from modules.users.repository import UserRepository
-from modules.users.models import User
 
 class UserService:
 
     @staticmethod
-    def sync_user(db, supabase_user):
-        user = UserRepository.get_by_id(db, supabase_user["id"])
-        if user:
-            return user
+    def sync_user(db, auth_user):
+        email = auth_user.get("email")
+        user_id = auth_user.get("sub")
 
-        new_user = User(
-            id=supabase_user["id"],
-            email=supabase_user["email"],
-            role="student"  # default
-        )
-        return UserRepository.create(db, new_user)
+        user = UserRepository.get_by_id(db, user_id)
+
+        if not user:
+            user = UserRepository.create(
+                db,
+                user_id=user_id,
+                email=email,
+                role="student",  # default
+            )
+
+        return user

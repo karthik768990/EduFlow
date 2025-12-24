@@ -1,18 +1,19 @@
 from sqlalchemy.orm import Session
-from modules.study_sessions.models import StudySession
-from modules.assignments.models import Assignment
+from sqlalchemy import text
 
 class RankingService:
-
     @staticmethod
     def get_leaderboard(db: Session):
-        # demo logic (expand later)
-        result = db.execute("""
-            select user_id,
-                   count(*) * 10 as score
-            from study_sessions
-            group by user_id
-            order by score desc
-            limit 10
+        query = text("""
+            SELECT user_id,
+                   COUNT(*) AS completed
+            FROM study_sessions
+            WHERE ended_at IS NOT NULL
+            GROUP BY user_id
+            ORDER BY completed DESC
+            LIMIT 10
         """)
-        return result.fetchall()
+
+        result = db.execute(query).mappings().all()
+
+        return result
